@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cart | Sandaruwan Computer</title><link rel="icon" href="assets/img/logo.png"><link rel="stylesheet" href="assets/css/style.css"><style>
+
+    /* V56 shared mobile header: vertical menu + cart shortcut beside Menu */
+    @media (max-width:1050px){
+      .navbar{overflow:visible;}
+      .nav-wrap{position:relative;}
+      .navbar .nav-links{
+        display:flex !important;
+        position:absolute;
+        left:0;
+        right:0;
+        top:calc(100% + 1px);
+        z-index:120;
+        flex-direction:column;
+        align-items:stretch;
+        justify-content:flex-start;
+        flex-wrap:nowrap;
+        gap:7px;
+        max-height:0;
+        opacity:0;
+        visibility:hidden;
+        overflow:hidden;
+        pointer-events:none;
+        padding:0 12px;
+        border:1px solid transparent;
+        border-radius:0 0 22px 22px;
+        background:rgba(5,12,28,.98);
+        box-shadow:0 24px 55px rgba(0,0,0,.42);
+        transform:translateY(-10px);
+        transition:max-height .38s ease, opacity .24s ease, transform .38s ease, padding .38s ease, border-color .25s ease, visibility 0s linear .38s;
+      }
+      .navbar .nav-links.open{
+        max-height:560px;
+        opacity:1;
+        visibility:visible;
+        pointer-events:auto;
+        padding:12px;
+        border-color:rgba(255,255,255,.12);
+        transform:translateY(0);
+        transition:max-height .42s cubic-bezier(.2,.8,.2,1), opacity .24s ease, transform .42s cubic-bezier(.2,.8,.2,1), padding .42s ease, border-color .25s ease, visibility 0s;
+      }
+      .navbar .nav-links a{
+        width:100%;
+        flex:none;
+        display:flex !important;
+        align-items:center;
+        justify-content:space-between;
+        min-height:46px;
+        padding:12px 15px;
+        border-radius:14px;
+        text-align:left;
+        font-size:14px;
+        background:rgba(255,255,255,.035);
+        border:1px solid rgba(255,255,255,.07);
+      }
+      .navbar .nav-links a:hover,
+      .navbar .nav-links a.active{
+        background:linear-gradient(135deg,rgba(11,188,255,.18),rgba(45,87,255,.13));
+        border-color:rgba(11,188,255,.32);
+      }
+      .mobile-menu[aria-expanded="true"]{
+        background:linear-gradient(135deg,rgba(11,188,255,.18),rgba(45,87,255,.14));
+        border-color:rgba(11,188,255,.38);
+      }
+    }
+    .mobile-header-actions{display:none;align-items:center;gap:8px;margin-left:auto;}
+    .mobile-cart-shortcut{
+      position:relative;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      width:46px;
+      height:46px;
+      padding:0;
+      border-radius:50%;
+      color:#fff;
+      background:rgba(32,226,170,.10);
+      border:1px solid rgba(32,226,170,.34);
+      box-shadow:0 10px 28px rgba(0,0,0,.22);
+    }
+    .mobile-cart-shortcut svg{width:21px;height:21px;display:block;}
+    .mobile-cart-shortcut .cart-count{
+      position:absolute;
+      top:-5px;
+      right:-5px;
+      min-width:21px;
+      height:21px;
+      padding:0 5px;
+      font-size:10px;
+      border:2px solid #050814;
+      box-shadow:0 4px 12px rgba(0,0,0,.28);
+    }
+    @media (max-width:1050px){
+      .mobile-header-actions{display:flex;}
+      .mobile-cart-shortcut{display:inline-flex;}
+      .navbar .nav-links .cart-pill{display:none !important;}
+      .navbar .mobile-menu{min-width:78px;}
+    }
+    @media (max-width:560px){
+      .navbar .nav-links{left:0;right:0;}
+      .navbar .nav-links a{min-height:44px;font-size:13px;padding:11px 14px;}
+      .nav-wrap{gap:10px;}
+      .mobile-header-actions{gap:7px;}
+      .mobile-cart-shortcut{width:44px;height:44px;}
+      .navbar .mobile-menu{min-width:72px;padding-left:14px;padding-right:14px;}
+    }
+    @media (max-width:390px){
+      .brand-title{max-width:150px;}
+      .mobile-cart-shortcut{width:42px;height:42px;}
+      .navbar .mobile-menu{min-width:66px;padding-left:12px;padding-right:12px;}
+    }
+
+</style>
+</head>
+<body data-page="cart">
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="Sandaruwan Computer Home">
+        <img class="logo" src="assets/img/logo.png" alt="Sandaruwan Computer Logo">
+        <div class="brand-title">Sandaruwan Computer<span>Cart View</span></div>
+      </a>
+      <div class="mobile-header-actions">
+        <a class="mobile-cart-shortcut" href="cart.html" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="20" r="1.3" fill="currentColor"/>
+            <circle cx="18" cy="20" r="1.3" fill="currentColor"/>
+          </svg>
+          <span class="cart-count" data-cart-count>0</span>
+        </a>
+        <button class="btn btn-ghost btn-small mobile-menu" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" class="">Home</a><a href="quotation.html" class="">Online Quotation</a><a href="products.html" class="">Products</a><a href="prebuild.html" class="">Pre Build PCs</a><a href="about.html" class="">About Us</a>
+        <a href="cart.html" class="active cart-pill">Cart <span class="cart-count" data-cart-count>0</span></a>
+        <a href="checkout.html" class="">Checkout</a>
+      </nav>
+    </div>
+  </header>
+  <main><section class="page-hero"><div class="container page-title"><div><h1><span class="title-gradient">Cart View</span></h1><p>Selected products සහ quotation items checkout කරන්න කලින් review කරන්න.</p></div><a class="btn btn-primary" href="checkout.html">Go To Checkout</a></div></section><section class="section"><div class="container"><div class="card"><div id="cartView"></div></div></div></section></main>
+  <footer class="footer"><div class="container">© Sandaruwan Computer • Cart</div></footer>
+  <div class="toast" id="toast"></div>
+  <script src="assets/js/config.js?v=47"></script><script src="assets/js/app.js?v=47"></script>
+
+  <script>
+    (function(){
+      const button=document.getElementById('mobileMenuBtn');
+      const menu=document.getElementById('navLinks');
+      if(!button || !menu) return;
+
+      function syncMenuState(){
+        const isOpen=menu.classList.contains('open');
+        button.setAttribute('aria-expanded',String(isOpen));
+        button.textContent=isOpen ? 'Close' : 'Menu';
+      }
+
+      button.addEventListener('click',()=>requestAnimationFrame(syncMenuState));
+      menu.addEventListener('click',(event)=>{
+        if(event.target.closest('a') && window.innerWidth<=1050){
+          menu.classList.remove('open');
+          syncMenuState();
+        }
+      });
+      document.addEventListener('click',(event)=>{
+        if(window.innerWidth>1050 || !menu.classList.contains('open')) return;
+        if(!menu.contains(event.target) && !button.contains(event.target)){
+          menu.classList.remove('open');
+          syncMenuState();
+        }
+      });
+      window.addEventListener('resize',()=>{
+        if(window.innerWidth>1050){
+          menu.classList.remove('open');
+          syncMenuState();
+        }
+      });
+      syncMenuState();
+    })();
+  </script>
+
+</body></html>
